@@ -37,14 +37,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <SignedOut>
-            <SignInButton />
-            <SignUpButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          <main className="wfull bg-[#f3f3f1] h-full min-h-screen">
+          <main className="wfull h-full min-h-screen bg-[#f3f3f1]">
             {children}
           </main>
           <Toaster />

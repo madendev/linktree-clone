@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function LinkProfile() {
+export function LinkProfile() {
   const [isCopiedLink, setIsCopiedLink] = useState(false);
 
   const handleCopyLink = () => {
