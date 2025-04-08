@@ -4,15 +4,16 @@ import { TreePalm } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { Link, User } from "@prisma/client";
-import { LinkProfile } from "./components";
+import { HandlerSteps, LinkProfile } from "./components";
 import { LoaderProfile } from "@/components/shared";
+import { StepConfigUserProvider } from "@/context";
 
 export default function HomePage() {
   const { user } = useUser();
   const [isFirstVisit, setIsFirstVisit] = useState(false);
   const [reload, setReload] = useState(false);
   const [infoUser, setInfoUser] = useState<(User & { links: Link[] }) | null>(
-    null,
+    null
   );
 
   useEffect(() => {
@@ -36,13 +37,9 @@ export default function HomePage() {
 
   if (isFirstVisit) {
     return (
-      <div className="flex h-screen items-center justify-center">
-        <div className="flex flex-col items-center justify-center text-center font-semibold text-gray-400">
-          <TreePalm className="size-20" strokeWidth={1} />
-          <p className="text-2xl">Welcome to Linktree</p>
-          <p className="text-sm">Create your first link</p>
-        </div>
-      </div>
+      <StepConfigUserProvider>
+        <HandlerSteps onReload={setReload} />
+      </StepConfigUserProvider>
     );
   }
 
